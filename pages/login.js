@@ -15,7 +15,13 @@ export default function Login() {
     };
     console.log(req);
     const data = await axios.post("/api/login", req);
-    toast.error(data.data.error, { theme: "colored", closeButton: false });
+    if (data.data.error)
+      toast.error(data.data.error, { theme: "colored", closeButton: false });
+    else
+      toast.success("Logged in successfully", {
+        theme: "colored",
+        closeButton: false,
+      });
     console.log(data);
   };
 
