@@ -1,5 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -12,6 +15,7 @@ export default function Login() {
     };
     console.log(req);
     const data = await axios.post("/api/login", req);
+    toast.error(data.data.error, { theme: "colored", closeButton: false });
     console.log(data);
   };
 
@@ -61,7 +65,13 @@ export default function Login() {
               Login
             </button>
           </div>
-          <p>Already a member ? </p>
+          <ToastContainer></ToastContainer>
+          <p>
+            New User ?{"  "}
+            <Link href="/register" className="link-A">
+              Register
+            </Link>
+          </p>
         </div>
       </div>
     </div>
