@@ -2,10 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-import clientPromise from "../lib/mongo/index";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  return <>Hii</>;
+  return <>Hii anshika</>;
 }
