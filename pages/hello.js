@@ -1,80 +1,27 @@
-export default function Hello() {
+import React from "react";
+// import Navbar from "./Navbar";
+
+const Hello = () => {
   return (
-    <div>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            Navbar
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
-                  Home
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Link
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"></input>
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
+    <div className="container mx-auto my-10 ">
+      <div className="bg-[#fff5f1] px-6 lg:px-16 py-10 rounded-3xl">
+        <Navbar />
+        <div className="flex flex-col lg:flex-row justify-center  lg:justify-between items-center gap-5">
+          <div className="flex flex-col gap-5 lg:gap-10">
+            <p className=" text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-medium">
+              A Unique approach <br className="lg:flex hidden" /> to learning foreign <br className="lg:flex hidden" /> languages
+              online
+            </p>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-500">
+              Learn at your own pace, with lifetime <br className="lg:flex hidden" /> access on mobile and desktop
+            </p>
+            <button className="btn btn-sm lg:btn-lg bg-[#524fd5] text-white rounded-full border-none w-36 lg:w-44 capitalize">Get Started</button>
           </div>
+          <img src="/assets/hero.png" alt="" />
         </div>
-      </nav>
+      </div>
     </div>
   );
-}
+};
+
+export default Hello;
