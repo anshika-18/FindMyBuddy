@@ -1,11 +1,13 @@
 import clientPromise from "../../lib/mongo/index";
+import { test } from "../ml/demo.py";
+const { spawn } = require("child_process");
 
 export default async (req, res) => {
   try {
-    const client = await clientPromise;
-    const db = client.db("users");
-    const users = await db.collection("users").find({}).toArray();
-    return res.json(users);
+    var pyPro = spawn("python", ["../ml/demo.py"]);
+    pyPro.stdout.on("data", function (data) {
+      res.send(data.toString());
+    });
   } catch (err) {
     console.log(err);
   }
