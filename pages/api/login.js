@@ -31,6 +31,8 @@ export default async (req, res) => {
               token,
               email: users[0].email,
               password: users[0].password,
+              name: users[0].name,
+              userId: users[0]._id,
             });
           }
         );
