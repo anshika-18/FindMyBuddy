@@ -33,6 +33,7 @@ export default async (req, res) => {
               password: users[0].password,
               name: users[0].name,
               userId: users[0]._id,
+              favSongId: users[0].favSongId,
             });
           }
         );
