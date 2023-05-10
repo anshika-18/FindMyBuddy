@@ -12,16 +12,13 @@ export default function Dashboard() {
           <div className="col-2 das-1">
             <div>FIND MY BUDDY</div>
             <button type="button" class="btn btn-outline-primary btn-side">
-              Home
-            </button>
-            <button type="button" class="btn btn-outline-primary btn-side">
-              Home
+              Favourites
             </button>
             <button type="button" class="btn btn-primary btn-side">
-              Home
+              Find Buddy
             </button>
             <button type="button" class="btn btn-primary btn-side">
-              Home
+              Profile
             </button>
             <button
               type="button"
@@ -41,41 +38,6 @@ export default function Dashboard() {
                 <div className="col-4">Artist</div>
               </div>
               <div className="my-fav-div">
-                <div className="row fav-row-main">
-                  <div className="col-2">1.</div>
-                  <div className="col-6">Title</div>
-                  <div className="col-4">Artist</div>
-                </div>
-                <div className="row fav-row-main">
-                  <div className="col-2">1.</div>
-                  <div className="col-6">Title</div>
-                  <div className="col-4">Artist</div>
-                </div>
-                <div className="row fav-row-main">
-                  <div className="col-2">1.</div>
-                  <div className="col-6">Title</div>
-                  <div className="col-4">Artist</div>
-                </div>
-                <div className="row fav-row-main">
-                  <div className="col-2">1.</div>
-                  <div className="col-6">Title</div>
-                  <div className="col-4">Artist</div>
-                </div>
-                <div className="row fav-row-main">
-                  <div className="col-2">1.</div>
-                  <div className="col-6">Title</div>
-                  <div className="col-4">Artist</div>
-                </div>
-                <div className="row fav-row-main">
-                  <div className="col-2">1.</div>
-                  <div className="col-6">Title</div>
-                  <div className="col-4">Artist</div>
-                </div>
-                <div className="row fav-row-main">
-                  <div className="col-2">1.</div>
-                  <div className="col-6">Title</div>
-                  <div className="col-4">Artist</div>
-                </div>
                 <div className="row fav-row-main">
                   <div className="col-2">1.</div>
                   <div className="col-6">Title</div>
