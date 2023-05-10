@@ -6,8 +6,9 @@ const salt = 10;
 
 export default async (req, res) => {
   try {
-    if (!req.body.email || !req.body.password)
+    if (!req.body.email || !req.body.password || !req.body.name)
       return res.status(300).json({ error: "Please enter all fields" });
+    const name = req.body.name;
     const email = req.body.email;
     let password = req.body.password;
     const client = await clientPromise;
@@ -24,13 +25,18 @@ export default async (req, res) => {
         password = hash;
         const data = await db
           .collection("users")
-          .insertOne({ email: email, password: password });
+          .insertOne({
+            email: email,
+            password: password,
+            name: name,
+            favSongId: [],
+          });
         if (data.acknowledged == false)
           return res.status(404).json({ error: "User not found" });
         console.log(data);
 
         jwt.sign(
-          { id: data.insertedId },
+          { userId: data.insertedId },
           process.env.jwtSecret,
           (err, token) => {
             if (err) throw err;
@@ -38,8 +44,9 @@ export default async (req, res) => {
               insert: data.acknowledged,
               token,
               user: {
-                id: data.insertedId,
+                userId: data.insertedId,
                 email: email,
+                name: name,
               },
             });
           }

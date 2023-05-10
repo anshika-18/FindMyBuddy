@@ -22,13 +22,20 @@
     "mongodb": "^5.1.0",
     "mongoose": "^7.1.0",
     "next": "13.2.4",
+    "nodemailer": "^6.9.1",
     "nodemon": "^2.0.22",
+    "peer": "^1.0.0",
+    "peerjs": "^1.4.7",
     "pyodide": "^0.23.2",
     "react": "18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "18.2.0",
+    "react-router-dom": "^6.11.1",
     "react-toastify": "^9.1.2",
-    "typescript": "5.0.3"
+    "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1",
+    "typescript": "5.0.3",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "sass": "^1.62.1"
