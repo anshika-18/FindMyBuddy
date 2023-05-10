@@ -1,4 +1,10 @@
 export default function Dashboard() {
+  const logout = () => {
+    window.localStorage.removeItem("userId");
+    window.localStorage.removeItem("name");
+    window.localStorage.removeItem("email");
+    window.location.replace("/auth/login");
+  };
   return (
     <div className="dashboard">
       <div className="container container-das ">
@@ -17,7 +23,12 @@ export default function Dashboard() {
             <button type="button" class="btn btn-primary btn-side">
               Home
             </button>
-            <button type="button" class="btn btn-outline-danger btn-bottom">
+            <button
+              type="button"
+              class="btn btn-outline-danger btn-bottom"
+              onClick={() => {
+                logout();
+              }}>
               LOGOUT
             </button>
           </div>
