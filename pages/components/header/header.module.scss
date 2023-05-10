@@ -1,0 +1,54 @@
+@import '../../../styles/variables.module.scss';
+
+$text-color: #fff;
+// .navbar-box {
+//     // background-color: $dark-blue;
+//     background-color: black;
+// }
+
+// .navbar {
+//     background-color: transparent;
+//     color: $text-color !important;
+
+//     .navlink {
+//         color: $text-color !important;
+//     }
+// }
+
+.navbarCustom {
+    background-color: $background;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.nav {
+    justify-content: center;
+
+    .navLink {
+        color: #f8f9fa !important;
+        /* Set the color to a light shade */
+    }
+
+    .navLinkRight {
+        color: #f8f9fa !important;
+        margin-left: auto;
+    }
+}
+
+
+
+.navLink:hover,
+.navLink:focus {
+    color: #007bff !important;
+    /* Set the hover/focus color to the primary color */
+}
+
+.navbarBrand {
+    color: #f8f9fa !important;
+    /* Set the brand color to a light shade */
+}
+
+.navbarBrand:hover,
+.navbarBrand:focus {
+    color: #007bff !important;
+    /* Set the hover/focus color to the primary color */
+}

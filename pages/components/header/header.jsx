@@ -1,80 +1,30 @@
-export default function Header() {
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import { Nav } from 'react-bootstrap';
+import Style from './header.module.scss'
+
+const Header = () => {
     return (
-        <div>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                        Navbar
-                    </a>
-                    <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    Link
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            Action
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            Another action
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-divider" />
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            Something else here
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled">Disabled</a>
-                            </li>
-                        </ul>
-                        <form class="d-flex" role="search">
-                            <input
-                                class="form-control me-2"
-                                type="search"
-                                placeholder="Search"
-                                aria-label="Search"></input>
-                            <button class="btn btn-outline-success" type="submit">
-                                Search
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    );
+        <Navbar expand="lg" fixed="top" className={Style.navbarCustom}>
+            <Container>
+                <Navbar.Brand href="#home" className={Style.navbarBrand}>Find My Buddy</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link href="#home" className={Style.navLink}>Home</Nav.Link>
+                        <Nav.Link href="#features" className={Style.navLink}>About us</Nav.Link>
+                        <Nav.Link href="#pricing" className={Style.navLink}>Contact us</Nav.Link>
+                        {/* </Nav>
+                    <Nav> */}
+                        <Nav.Link href="#login" className={Style.navLinkRight}>Login</Nav.Link>
+                        <Nav.Link eventKey={2} href="#register" className={Style.navLinkRight}>
+                            Register
+                        </Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar >
+    )
 }
+
+export default Header;
