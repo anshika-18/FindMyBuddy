@@ -61,9 +61,27 @@
   overflow-y: scroll;
 }
 
+.addSong {
+  margin-bottom: 20px;
+}
 .addSong .dashboardDropDown {
   width: 80%;
 }
 .addSong button {
   width: 20%;
+}
+
+.dasHead {
+  margin-bottom: 20px;
+}
+
+.trash {
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  color: #fff;
+}
+
+.trash:hover {
+  color: red;
 }
