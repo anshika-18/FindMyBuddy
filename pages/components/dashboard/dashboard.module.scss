@@ -1,0 +1,69 @@
+@import "../../../styles/variables.module.scss";
+
+.dashboard {
+  background: #223243;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.containerDas {
+  max-width: 100vw;
+}
+
+.das1,
+.das2,
+.das3 {
+  border: 2px solid black;
+  padding: 20px;
+  height: 100vh;
+}
+
+.btnSide {
+  background: #00dfc4;
+  color: #000;
+  width: 100%;
+  margin-top: 20px;
+}
+.das1 {
+  position: relative;
+}
+
+.btnBottom {
+  width: auto;
+  margin-top: 20px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}
+
+.favRowHead {
+  background: #00dfc4;
+  color: #000;
+  margin-top: 10px;
+  padding: 5px;
+  box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.35),
+    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+    inset 5px 5px 15px rgba(0, 0, 0, 0.35);
+  font-weight: 600;
+}
+
+.favRowMain {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.myFavDiv {
+  overflow-y: scroll;
+}
+
+.addSong .dashboardDropDown {
+  width: 80%;
+}
+.addSong button {
+  width: 20%;
+}
