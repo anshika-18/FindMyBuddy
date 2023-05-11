@@ -15,11 +15,12 @@ const LandingPage = () => {
                     <p>random sentence bvuvsbuqfhancmag haoudacmdgfuksvmnzhf haifyakbvvs fufha hfuii fwehfuiw griuwhfkafi gsy fhehuif kfhi huieufabcsoifj sh yfsh fke sdkj gsbvjhsyfe egfhewhf se huses fsguf hewe gfeuhfks fusghfuihyu</p>
                     <Button className={Style.btn}>Get your music buddy</Button>
                 </div>
-                <div className={Style.cols + " " + Style.cols1}>
+                <img src='/images/landing-page/musicBuddy3.png' className={Style.splash}></img>
+                {/* <div className={Style.cols + " " + Style.cols1}>
                     <div className={Style.imgbox}>
                         <img src='/images/landing-page/music-buddy.png' className={Style.splash}></img>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );

@@ -22,33 +22,39 @@ $text-color: #fff;
 
 .nav {
     justify-content: center;
+    align-items: right;
+    color: $text-color !important;
 
     .navLink {
-        color: #f8f9fa !important;
+        color: $text-color !important;
         /* Set the color to a light shade */
     }
 
-    .navLinkRight {
-        color: #f8f9fa !important;
-        margin-left: auto;
-    }
+
 }
 
-
+.navLinkRight {
+    color: $text-color !important;
+    margin-right: 0;
+}
 
 .navLink:hover,
-.navLink:focus {
-    color: #007bff !important;
+.navLink:focus,
+.navLinkRight:hover,
+.navLinkRight:focus {
+    color: $light-purple !important;
     /* Set the hover/focus color to the primary color */
 }
 
 .navbarBrand {
-    color: #f8f9fa !important;
+    color: $light-pink !important;
+    font-weight: 500;
     /* Set the brand color to a light shade */
 }
 
 .navbarBrand:hover,
 .navbarBrand:focus {
-    color: #007bff !important;
+    // color: #f8f9fa !important;
+
     /* Set the hover/focus color to the primary color */
 }
