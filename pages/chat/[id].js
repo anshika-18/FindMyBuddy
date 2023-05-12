@@ -92,15 +92,14 @@ export default function ParticularRoom(props) {
           const outer = document.getElementById(roomId);
           if (outer) {
             const newDiv = document.createElement("div");
-            newDiv.className = Style.receiverMsg;
-            const nameDiv = document.createElement("div");
-            nameDiv.textContent = data.senderName;
-            nameDiv.className = Style.name;
+            newDiv.className = Style.newMsg;
+            const msgBox = document.createElement("div");
+            msgBox.className = Style.receiverMsg;
             const messDiv = document.createElement("div");
             messDiv.textContent = data.message;
             messDiv.className = Style.mess
-            newDiv.appendChild(nameDiv);
-            newDiv.appendChild(messDiv);
+            newDiv.appendChild(msgBox);
+            msgBox.appendChild(messDiv);
             outer.appendChild(newDiv);
           }
         }
@@ -135,15 +134,23 @@ export default function ParticularRoom(props) {
         const outer = document.getElementById(roomId);
         if (outer) {
           const newDiv = document.createElement("div");
-          newDiv.className = Style.senderMsg;
-          const nameDiv = document.createElement("div");
-          nameDiv.textContent = data.senderName;
-          nameDiv.className = Style.name;
+          newDiv.className = Style.newMsg;
+          const senderBox = document.createElement("div");
+          senderBox.className = Style.senderMsg;
+          const msgBox = document.createElement("div");
+          msgBox.className = Style.msgBubble;
           const messDiv = document.createElement("div");
           messDiv.textContent = message;
           messDiv.className = Style.mess;
-          newDiv.appendChild(nameDiv);
-          newDiv.appendChild(messDiv);
+          const msgAction = document.createElement("div");
+          msgAction.className = Style.msgAction;
+          const msgSpacer = document.createElement("div");
+          msgSpacer.className = Style.msgSpacer;
+          newDiv.appendChild(senderBox);
+          senderBox.appendChild(msgBox);
+          msgBox.appendChild(messDiv);
+          senderBox.appendChild(msgAction);
+          senderBox.appendChild(msgSpacer);
           outer.appendChild(newDiv);
         }
       })
@@ -174,6 +181,11 @@ export default function ParticularRoom(props) {
       });
   };
 
+  const msgAreaRef = useRef(null);
+  useEffect(() => {
+    const scrollElement = msgAreaRef.current;
+    scrollElement.scrollTop = scrollElement.scrollHeight;
+  }, []);
 
   return (
     <div className={Style.room1Outer}>
@@ -188,18 +200,23 @@ export default function ParticularRoom(props) {
           </button>
         </div> */}
       </div>
-      <div id={roomId} className={Style.room1Mess}>
+      <div id={roomId} ref={msgAreaRef} className={Style.room1Mess}>
         {storedMessages &&
           storedMessages.map((x) => {
             return (x.senderName === senderName ?
-              <div className={Style.senderMSg}>
-                <div className={Style.name}>me</div>
-                <div className={Style.mess}>{x.message}</div>
+              <div className={Style.newMsg}>
+                <div className={Style.senderMsg}>
+                  <div className={Style.msgBubble}>
+                    <div className={Style.mess}>{x.message}</div>
+                  </div>
+                  <div className={Style.msgAction}></div>
+                  <div className={Style.msgSpacer}></div>
+                </div>
               </div> :
-              <div className={Style.receiverMsg}>
-                <div className={Style.name}>{x.senderName}</div>
-                <div className={Style.mess}>{x.message}</div>
-              </div>)
+              <div className={Style.newMsg}>
+                <div className={Style.receiverMsg}>
+                  <div className={Style.mess}>{x.message}</div>
+                </div></div>)
 
           })
         }
