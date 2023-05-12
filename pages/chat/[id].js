@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useLocation, useHistory, Link } from "react-router-dom";
 import axios from "axios";
+import Style from "./chat.module.scss"
 import io from "socket.io-client";
 
 import { useRouter } from "next/router";
@@ -91,13 +92,13 @@ export default function ParticularRoom(props) {
           const outer = document.getElementById(roomId);
           if (outer) {
             const newDiv = document.createElement("div");
-            newDiv.className = "new-mess";
+            newDiv.className = Style.receiverMsg;
             const nameDiv = document.createElement("div");
             nameDiv.textContent = data.senderName;
-            nameDiv.className = "name";
+            nameDiv.className = Style.name;
             const messDiv = document.createElement("div");
             messDiv.textContent = data.message;
-            messDiv.className = "mess";
+            messDiv.className = Style.mess
             newDiv.appendChild(nameDiv);
             newDiv.appendChild(messDiv);
             outer.appendChild(newDiv);
@@ -105,6 +106,12 @@ export default function ParticularRoom(props) {
         }
       });
   });
+
+  const [senderName, setSenderName] = useState();
+
+  useEffect(() => {
+    setSenderName(window.localStorage.getItem("name"))
+  }, [])
 
   //send messsage
   const sendMess = (e) => {
@@ -114,7 +121,7 @@ export default function ParticularRoom(props) {
       roomId,
       message,
       senderId,
-      senderName: window.localStorage.getItem("name"),
+      senderName: senderName,
     };
     //console.log(data);
     //console.log("before");
@@ -128,13 +135,13 @@ export default function ParticularRoom(props) {
         const outer = document.getElementById(roomId);
         if (outer) {
           const newDiv = document.createElement("div");
-          newDiv.className = "new-mess";
+          newDiv.className = Style.senderMsg;
           const nameDiv = document.createElement("div");
           nameDiv.textContent = data.senderName;
-          nameDiv.className = "name";
+          nameDiv.className = Style.name;
           const messDiv = document.createElement("div");
           messDiv.textContent = message;
-          messDiv.className = "mess";
+          messDiv.className = Style.mess;
           newDiv.appendChild(nameDiv);
           newDiv.appendChild(messDiv);
           outer.appendChild(newDiv);
@@ -167,30 +174,39 @@ export default function ParticularRoom(props) {
       });
   };
 
+
   return (
-    <div className={"room-1-outer"}>
-      <div className="chat-header">
-        <div className="buttons-chat">
+    <div className={Style.room1Outer}>
+      <div className={Style.chatHeader}>
+        <span className={Style.recieverName}>Username</span>
+        {/* <div className={Style.buttonsChat}>
           <button
             variant="danger"
             onClick={() => block()}
-            className="leave-group">
+            className={Style.leaveGroup}>
             Block
           </button>
-        </div>
+        </div> */}
       </div>
-      <div id={roomId} className="room-1-mess">
+      <div id={roomId} className={Style.room1Mess}>
         {storedMessages &&
-          storedMessages.map((x) => (
-            <div className="new-mess">
-              <div className="name">{x.senderName}</div>
-              <div className="mess">{x.message}</div>
-            </div>
-          ))}
+          storedMessages.map((x) => {
+            return (x.senderName === senderName ?
+              <div className={Style.senderMSg}>
+                <div className={Style.name}>me</div>
+                <div className={Style.mess}>{x.message}</div>
+              </div> :
+              <div className={Style.receiverMsg}>
+                <div className={Style.name}>{x.senderName}</div>
+                <div className={Style.mess}>{x.message}</div>
+              </div>)
+
+          })
+        }
       </div>
-      <form className="room-1-form">
+      <form className={Style.room1Form}>
         <input
-          className="text-input"
+          className={Style.textInput}
           type="text"
           placeholder="Type message ..."
           value={message}
@@ -198,12 +214,12 @@ export default function ParticularRoom(props) {
             setMessage(e.target.value);
           }}></input>
         <input
-          className="form-button-chat"
+          className={Style.formButtonChat}
           type="submit"
           value="send"
           onClick={(e) => {
             sendMess(e);
-          }}></input>
+          }} />
       </form>
     </div>
   );

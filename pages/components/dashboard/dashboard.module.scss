@@ -1,7 +1,7 @@
 @import "../../../styles/variables.module.scss";
 
 .dashboard {
-  background: #223243;
+  background: $background;
   color: #fff;
   margin: 0;
   padding: 0;
@@ -17,16 +17,22 @@
 .das2,
 .das3 {
   border: 2px solid black;
-  padding: 20px;
+  // padding: 20px;
   height: 100vh;
 }
 
+.das1,
+.das2 {
+  padding: 20px;
+}
+
 .btnSide {
-  background: #00dfc4;
+  background: $light-purple;
   color: #000;
   width: 100%;
   margin-top: 20px;
 }
+
 .das1 {
   position: relative;
 }
@@ -41,7 +47,7 @@
 }
 
 .favRowHead {
-  background: #00dfc4;
+  background: $light-purple;
   color: #000;
   margin-top: 10px;
   padding: 5px;
@@ -64,9 +70,11 @@
 .addSong {
   margin-bottom: 20px;
 }
+
 .addSong .dashboardDropDown {
   width: 80%;
 }
+
 .addSong button {
   width: 20%;
 }
@@ -85,6 +93,7 @@
 .trash:hover {
   color: red;
 }
+
 .message {
   padding: 0;
   border: none;
@@ -94,4 +103,20 @@
 
 .message:hover {
   color: blue;
+}
+
+.addBtn {
+  // background-color: $light-pink;
+  color: $light-pink;
+  border-color: $light-pink;
+}
+
+.addBtn:hover,
+.addBtn:focus,
+.addBtn:active,
+.addBtn.active,
+.open .dropdown-toggle.addBtn {
+  background-color: $light-pink;
+  color: #FFF;
+  border-color: $light-pink;
 }

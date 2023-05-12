@@ -101,7 +101,7 @@ export default function Dashboard() {
     setRecieverId(data);
   };
 
-  const findBuddy = () => {};
+  const findBuddy = () => { };
   return (
     <div className={Style.dashboard}>
       {auth ? (
@@ -156,7 +156,7 @@ export default function Dashboard() {
                     className={Style.dashboardDropDown + " " + ""}
                     onSelect={(value) => setValue(value.index)}></DropdownList>
                   <button
-                    className="btn btn-outline-success "
+                    className={Style.addBtn + " " + "btn"}
                     onClick={() => {
                       addSong();
                     }}>
@@ -235,7 +235,7 @@ export default function Dashboard() {
               </div>
             )}
             <div className={Style.das3 + " " + "col-5"}>
-              <div>CHATS</div>
+              {/* <div>CHATS</div> */}
               {recieverId == "" ? (
                 <></>
               ) : (

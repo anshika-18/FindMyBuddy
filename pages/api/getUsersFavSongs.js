@@ -34,7 +34,7 @@ export default async (req, res) => {
     console.log("2");
     //console.log(user_favourites);
 
-    const findBuddy = await axios.post("http://127.0.0.1:5000/findBuddy", {
+    const findBuddy = await axios.post("https://model-for-finding-buddy-rashigupta01.vercel.app/findBuddy", {
       currentUserId,
       user_favourites,
     });
