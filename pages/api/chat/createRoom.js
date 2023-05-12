@@ -4,6 +4,7 @@ import { v4 as uuid } from "uuid";
 
 export default async (req, res) => {
   try {
+    console.log("here create");
     const senderId = new ObjectId(req.body.senderId);
     const recieverId = new ObjectId(req.body.recieverId);
     const client = await clientPromise;
@@ -14,11 +15,13 @@ export default async (req, res) => {
         participants: [senderId, recieverId],
       })
       .toArray();
-    // console.log("check", check);
+    console.log("check", check);
     if (check.length != 0) {
+      console.log("klgdfou", check[0]);
       return res.json({ roomId: check[0].roomId });
     } else {
       const roomId = uuid();
+      console.log("dfou", check[0]);
       const data = await db.collection("rooms").insertOne({
         roomId,
         participants: [senderId, recieverId],

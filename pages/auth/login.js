@@ -11,7 +11,7 @@ export default function Login() {
 
   useEffect(() => {
     if (window.localStorage.getItem("userId")) {
-      window.location.replace("/dashboard");
+      window.location.replace("/components/dashboard/dashboard");
     }
   }, []);
   const login = async () => {
@@ -32,7 +32,7 @@ export default function Login() {
       window.localStorage.setItem("userId", data.data.userId);
       window.localStorage.setItem("name", data.data.name);
       window.localStorage.setItem("email", data.data.email);
-      window.location.replace("/dashboard");
+      window.location.replace("/components/dashboard/dashboard");
     }
     console.log(data);
   };

@@ -11,21 +11,27 @@ export default function ParticularRoom(props) {
   const socketInstance = useRef(router.socketInstance);
   const [message, setMessage] = useState();
   const [participants, setParticipants] = useState([]);
-  const [senderId, setSenderId] = useState("6458ab39c6dad8e537a94602");
+  const [senderId, setSenderId] = useState("");
   //  const recieverId = props.recieverId;
-  const recieverId = "64577f42c6dad8e537a94600";
+  const recieverId = props.recieverId;
   const [roomId, setRoomId] = useState("");
+  console.log(props);
 
+  useEffect(() => {
+    setSenderId(window.localStorage.getItem("userId"));
+  }, []);
   const create = () => {
     const data = {
-      senderId,
+      senderId: window.localStorage.getItem("userId"),
       recieverId,
     };
+    // console.log(data);
     //create chat room
     axios
       .post("http://localhost:3000/api/chat/createRoom", data)
       .then((res) => {
-        // console.log("create room");
+        console.log("create room", res.data);
+        //console.log()
         //console.log("oiegfioge", res);
         setRoomId(res.data.roomId);
       })
@@ -38,7 +44,7 @@ export default function ParticularRoom(props) {
   };
   useEffect(() => {
     // setSenderId(localStorage.getItem("userId"));
-    setSenderId("6458ab39c6dad8e537a94602");
+
     initialise();
     create();
     if (!socketInstance.current) {
@@ -87,10 +93,10 @@ export default function ParticularRoom(props) {
             const newDiv = document.createElement("div");
             newDiv.className = "new-mess";
             const nameDiv = document.createElement("div");
-            nameDiv.textContent = data.name;
+            nameDiv.textContent = data.senderName;
             nameDiv.className = "name";
             const messDiv = document.createElement("div");
-            messDiv.textContent = data.mess;
+            messDiv.textContent = data.message;
             messDiv.className = "mess";
             newDiv.appendChild(nameDiv);
             newDiv.appendChild(messDiv);
@@ -107,7 +113,8 @@ export default function ParticularRoom(props) {
     const data = {
       roomId,
       message,
-      userId: senderId,
+      senderId,
+      senderName: window.localStorage.getItem("name"),
     };
     //console.log(data);
     //console.log("before");
@@ -123,7 +130,7 @@ export default function ParticularRoom(props) {
           const newDiv = document.createElement("div");
           newDiv.className = "new-mess";
           const nameDiv = document.createElement("div");
-          nameDiv.textContent = "kdg";
+          nameDiv.textContent = data.senderName;
           nameDiv.className = "name";
           const messDiv = document.createElement("div");
           messDiv.textContent = message;
@@ -176,7 +183,7 @@ export default function ParticularRoom(props) {
         {storedMessages &&
           storedMessages.map((x) => (
             <div className="new-mess">
-              <div className="name">{x.senderId}</div>
+              <div className="name">{x.senderName}</div>
               <div className="mess">{x.message}</div>
             </div>
           ))}
