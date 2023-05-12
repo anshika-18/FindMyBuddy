@@ -7,6 +7,7 @@ import songs from "../../api/csv/data.json";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ParticularRoom from "../../chat/[id]";
+import { RotatingLines } from "react-loader-spinner";
 
 export default function Dashboard() {
   // const { songs, setSongs } = useState([]);
@@ -101,7 +102,7 @@ export default function Dashboard() {
     setRecieverId(data);
   };
 
-  const findBuddy = () => { };
+  const findBuddy = () => {};
   return (
     <div className={Style.dashboard}>
       {auth ? (
@@ -144,6 +145,7 @@ export default function Dashboard() {
             {currentWindow == "favourites" ? (
               <div className={Style.das2 + " " + "col-5 "}>
                 <div className={Style.dasHead}>MY FAVOURITES</div>
+
                 <div className={Style.addSong + " " + "row"}>
                   <DropdownList
                     dataKey="index"
@@ -171,24 +173,36 @@ export default function Dashboard() {
                     <div className="col-1"></div>
                   </div>
                   <div className={Style.myFavDiv}>
-                    {favSongs.map((song) => {
-                      return (
-                        <div className={Style.favRowMain + " " + "row"}>
-                          <div className="col-7">{song.title}</div>
-                          <div className="col-4">{song.artist}</div>
-                          <div className="col-1">
-                            <button
-                              className={Style.trash + " " + "btn"}
-                              onClick={() => {
-                                removeSong(song.index);
-                              }}>
-                              {" "}
-                              <i class="fa-sharp fa-solid fa-trash"></i>
-                            </button>
+                    {favSongs.length == 0 ? (
+                      <div className={Style.loader}>
+                        <RotatingLines
+                          strokeColor="grey"
+                          strokeWidth="5"
+                          animationDuration="0.75"
+                          width="70"
+                          visible={true}
+                        />
+                      </div>
+                    ) : (
+                      favSongs.map((song) => {
+                        return (
+                          <div className={Style.favRowMain + " " + "row"}>
+                            <div className="col-7">{song.title}</div>
+                            <div className="col-4">{song.artist}</div>
+                            <div className="col-1">
+                              <button
+                                className={Style.trash + " " + "btn"}
+                                onClick={() => {
+                                  removeSong(song.index);
+                                }}>
+                                {" "}
+                                <i class="fa-sharp fa-solid fa-trash"></i>
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })
+                    )}
                   </div>
                 </div>
               </div>
@@ -212,24 +226,36 @@ export default function Dashboard() {
                     <div className="col-3">Chat</div>
                   </div>
                   <div className={Style.myFavDiv}>
-                    {buddy.map((buddy) => {
-                      return (
-                        <div className={Style.favRowMain + " " + "row"}>
-                          <div className="col-9">{buddy.name}</div>
+                    {buddy.length == 0 ? (
+                      <div className={Style.loader}>
+                        <RotatingLines
+                          strokeColor="grey"
+                          strokeWidth="5"
+                          animationDuration="0.75"
+                          width="70"
+                          visible={true}
+                        />
+                      </div>
+                    ) : (
+                      buddy.map((buddy) => {
+                        return (
+                          <div className={Style.favRowMain + " " + "row"}>
+                            <div className="col-9">{buddy.name}</div>
 
-                          <div className="col-3">
-                            <button
-                              className={Style.message + " " + "btn"}
-                              onClick={() => {
-                                chat(buddy.userId);
-                              }}>
-                              {" "}
-                              <i class="fa-solid fa-message"></i>
-                            </button>
+                            <div className="col-3">
+                              <button
+                                className={Style.message + " " + "btn"}
+                                onClick={() => {
+                                  chat(buddy.userId);
+                                }}>
+                                {" "}
+                                <i class="fa-solid fa-message"></i>
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })
+                    )}
                   </div>
                 </div>
               </div>

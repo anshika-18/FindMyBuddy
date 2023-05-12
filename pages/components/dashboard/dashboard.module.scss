@@ -117,6 +117,15 @@
 .addBtn.active,
 .open .dropdown-toggle.addBtn {
   background-color: $light-pink;
-  color: #FFF;
+  color: #fff;
   border-color: $light-pink;
+}
+
+.containerFav {
+  justify-content: center;
+  width: 100%;
+}
+
+.loader {
+  text-align: center;
 }
