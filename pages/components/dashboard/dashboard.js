@@ -11,6 +11,8 @@ export default function Dashboard() {
   // const { songs, setSongs } = useState([]);
   const [value, setValue] = useState("select");
   const [favSongs, setFavSongs] = useState([]);
+  const [currentWindow, setCurrentWindow] = useState("favourites");
+  const [buddy, setBuddy] = useState([]);
   // var = "select";
 
   useEffect(async () => {
@@ -23,6 +25,11 @@ export default function Dashboard() {
       const res2 = await axios.post("/api/getSongsById", {
         songIds: res1.data,
       });
+      const res3 = await axios.post("/api/getUsersFavSongs", {
+        currentUserId: window.localStorage.getItem("userId"),
+      });
+      //console.log(res3.data.data);
+      setBuddy(res3.data.data);
       //console.log(res2.data);
       setFavSongs(res2.data);
     } catch (err) {
@@ -78,6 +85,8 @@ export default function Dashboard() {
       console.log(err);
     }
   };
+
+  const findBuddy = () => {};
   return (
     <div className={Style.dashboard}>
       <div className={Style.containerDas}>
@@ -86,11 +95,17 @@ export default function Dashboard() {
             <div>FIND MY BUDDY</div>
             <button
               type="button"
+              onClick={() => {
+                setCurrentWindow("favourites");
+              }}
               className={Style.btnSide + " " + "btn btn-outline-primary"}>
               Favourites
             </button>
             <button
               type="button"
+              onClick={() => {
+                setCurrentWindow("buddy");
+              }}
               className={Style.btnSide + " " + "btn btn-primary"}>
               Find Buddy
             </button>
@@ -108,56 +123,97 @@ export default function Dashboard() {
               LOGOUT
             </button>
           </div>
-          <div className={Style.das2 + " " + "col-5 "}>
-            <div className={Style.dasHead}>MY FAVOURITES</div>
-            <div className={Style.addSong + " " + "row"}>
-              <DropdownList
-                dataKey="index"
-                value={value}
-                //sdefaultValue="Yellow"
-                data={songs}
-                textField="title"
-                filter="contains"
-                defaultValue="select"
-                className={Style.dashboardDropDown + " " + ""}
-                onSelect={(value) => setValue(value.index)}></DropdownList>
-              <button
-                className="btn btn-outline-success "
-                onClick={() => {
-                  addSong();
-                }}>
-                Add Song
-              </button>
-            </div>
-            <ToastContainer></ToastContainer>
-            <div className={Style.containerFav + " " + "container"}>
-              <div className={Style.favRowHead + " " + "row"}>
-                <div className="col-7">Title</div>
-                <div className="col-4">Artist</div>
-                <div className="col-1"></div>
+          {currentWindow == "favourites" ? (
+            <div className={Style.das2 + " " + "col-5 "}>
+              <div className={Style.dasHead}>MY FAVOURITES</div>
+              <div className={Style.addSong + " " + "row"}>
+                <DropdownList
+                  dataKey="index"
+                  value={value}
+                  //sdefaultValue="Yellow"
+                  data={songs}
+                  textField="title"
+                  filter="contains"
+                  defaultValue="select"
+                  className={Style.dashboardDropDown + " " + ""}
+                  onSelect={(value) => setValue(value.index)}></DropdownList>
+                <button
+                  className="btn btn-outline-success "
+                  onClick={() => {
+                    addSong();
+                  }}>
+                  Add Song
+                </button>
               </div>
-              <div className={Style.myFavDiv}>
-                {favSongs.map((song) => {
-                  return (
-                    <div className={Style.favRowMain + " " + "row"}>
-                      <div className="col-7">{song.title}</div>
-                      <div className="col-4">{song.artist}</div>
-                      <div className="col-1">
-                        <button
-                          className={Style.trash + " " + "btn"}
-                          onClick={() => {
-                            removeSong(song.index);
-                          }}>
-                          {" "}
-                          <i class="fa-sharp fa-solid fa-trash"></i>
-                        </button>
+              <ToastContainer></ToastContainer>
+              <div className={Style.containerFav + " " + "container"}>
+                <div className={Style.favRowHead + " " + "row"}>
+                  <div className="col-7">Title</div>
+                  <div className="col-4">Artist</div>
+                  <div className="col-1"></div>
+                </div>
+                <div className={Style.myFavDiv}>
+                  {favSongs.map((song) => {
+                    return (
+                      <div className={Style.favRowMain + " " + "row"}>
+                        <div className="col-7">{song.title}</div>
+                        <div className="col-4">{song.artist}</div>
+                        <div className="col-1">
+                          <button
+                            className={Style.trash + " " + "btn"}
+                            onClick={() => {
+                              removeSong(song.index);
+                            }}>
+                            {" "}
+                            <i class="fa-sharp fa-solid fa-trash"></i>
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className={Style.das2 + " " + "col-5 "}>
+              <div className={Style.dasHead}>FIND BUDDY</div>
+              <div className={Style.addSong + " " + "row"}>
+                <button
+                  className="btn btn-outline-success "
+                  onClick={() => {
+                    findBuddy();
+                  }}>
+                  Find Buddy
+                </button>
+              </div>
+              <ToastContainer></ToastContainer>
+              <div className={Style.containerFav + " " + "container"}>
+                <div className={Style.favRowHead + " " + "row"}>
+                  <div className="col-9">Buddy</div>
+
+                  <div className="col-3">Chat</div>
+                </div>
+                <div className={Style.myFavDiv}>
+                  {buddy.map((buddy) => {
+                    return (
+                      <div className={Style.favRowMain + " " + "row"}>
+                        <div className="col-9">{buddy.name}</div>
+
+                        <div className="col-3">
+                          <button
+                            className={Style.trash + " " + "btn"}
+                            onClick={() => {}}>
+                            {" "}
+                            CHAT
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
           <div className={Style.das3 + " " + "col-5"}>
             <div>CHATS</div>
           </div>
