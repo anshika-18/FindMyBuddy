@@ -12,7 +12,5 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return <>
     <LandingPage />
-    Hii
-    <div className={varibles.title}>Hello sass</div>
   </>;
 }

@@ -12,7 +12,7 @@ const LandingPage = () => {
                     <span className={Style
                         .topline}>Hello</span>
                     <h1>Find my Buddy</h1>
-                    <p>random sentence bvuvsbuqfhancmag haoudacmdgfuksvmnzhf haifyakbvvs fufha hfuii fwehfuiw griuwhfkafi gsy fhehuif kfhi huieufabcsoifj sh yfsh fke sdkj gsbvjhsyfe egfhewhf se huses fsguf hewe gfeuhfks fusghfuihyu</p>
+                    <p> Connect with like-minded individuals, discover new music, and build lasting relationships through a common love of music. Personalize your profile, create playlists, and share your favorite tracks with your new friends. Join our community today and start exploring the world of music together!</p>
                     <Button className={Style.btn}>Get your music buddy</Button>
                 </div>
                 <img src='/images/landing-page/musicBuddy3.png' className={Style.splash}></img>

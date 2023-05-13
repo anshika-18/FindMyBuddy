@@ -21,9 +21,8 @@ $text-color: #fff;
 }
 
 .nav {
-    justify-content: center;
-    align-items: right;
     color: $text-color !important;
+    width: 100%;
 
     .navLink {
         color: $text-color !important;
@@ -35,7 +34,7 @@ $text-color: #fff;
 
 .navLinkRight {
     color: $text-color !important;
-    margin-right: 0;
+    font-size: 18px !important;
 }
 
 .navLink:hover,
@@ -49,12 +48,19 @@ $text-color: #fff;
 .navbarBrand {
     color: $light-pink !important;
     font-weight: 500;
+    font-size: 25px !important;
     /* Set the brand color to a light shade */
+    --c: linear-gradient(#DD7596 0 0);
+    padding-bottom: .15em;
+    background: var(--c), var(--c);
+    background-size: .3em .1em;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    transition: .3s linear, background-size .3s .2s linear;
 }
 
 .navbarBrand:hover,
 .navbarBrand:focus {
-    // color: #f8f9fa !important;
-
-    /* Set the hover/focus color to the primary color */
+    background-size: 40% .1em;
+    background-position: 10% 100%, 90% 100%;
 }

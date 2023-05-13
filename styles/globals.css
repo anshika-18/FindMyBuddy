@@ -69,8 +69,8 @@ button {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.login-container .signin .inputBox input:valid ~ span,
-.login-container .signin .inputBox input:focus ~ span {
+.login-container .signin .inputBox input:valid~span,
+.login-container .signin .inputBox input:focus~span {
   color: #00dfc4;
   border: 1px solid #00dfc4;
   background: #223243;
@@ -221,6 +221,7 @@ Link:hover {
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Roboto:wght@100;300&display=swap");
+
 :root {
   --button: #b3b3b3;
   --button-color: #0a0a0a;
@@ -231,19 +232,23 @@ Link:hover {
   --lit-header: #e6e6e6;
   --speed: 2s;
 }
+
 * {
   transform-style: preserve-3d;
 }
+
 @property --swing-x {
   initial-value: 0;
   inherits: false;
   syntax: "<integer>";
 }
+
 @property --swing-y {
   initial-value: 0;
   inherits: false;
   syntax: "<integer>";
 }
+
 .notfound {
   min-height: 100vh;
   display: flex;
@@ -255,7 +260,8 @@ Link:hover {
   color: var(--color);
   perspective: 1200px;
 }
-a {
+
+/* a {
   text-transform: uppercase;
   text-decoration: none;
   background: var(--button);
@@ -264,10 +270,11 @@ a {
   border-radius: 4rem;
   font-size: 0.875rem;
   letter-spacing: 0.05rem;
-}
+} */
 .p {
   font-weight: 100;
 }
+
 .h1 {
   -webkit-animation: swing var(--speed) infinite alternate ease-in-out;
   animation: swing var(--speed) infinite alternate ease-in-out;
@@ -278,11 +285,11 @@ a {
   letter-spacing: 1rem;
   transform: translate3d(0, 0, 0vmin);
   --x: calc(50% + (var(--swing-x) * 0.5) * 1%);
-  background: radial-gradient(var(--lit-header), var(--header) 45%) var(--x)
-    100%/200% 200%;
+  background: radial-gradient(var(--lit-header), var(--header) 45%) var(--x) 100%/200% 200%;
   -webkit-background-clip: text;
   color: transparent;
 }
+
 .h1:after {
   -webkit-animation: swing var(--speed) infinite alternate ease-in-out;
   animation: swing var(--speed) infinite alternate ease-in-out;
@@ -292,12 +299,10 @@ a {
   left: 0;
   color: var(--shadow);
   filter: blur(1.5vmin);
-  transform: scale(1.05) translate3d(0, 12%, -10vmin)
-    translate(
-      calc((var(--swing-x, 0) * 0.05) * 1%),
-      calc((var(--swing-y) * 0.05) * 1%)
-    );
+  transform: scale(1.05) translate3d(0, 12%, -10vmin) translate(calc((var(--swing-x, 0) * 0.05) * 1%),
+      calc((var(--swing-y) * 0.05) * 1%));
 }
+
 .cloak {
   animation: swing var(--speed) infinite alternate-reverse ease-in-out;
   height: 100%;
@@ -306,6 +311,7 @@ a {
   transform: rotate(calc(var(--swing-x) * -0.25deg));
   background: radial-gradient(40% 40% at 50% 42%, transparent, #000 35%);
 }
+
 .cloak__wrapper {
   position: fixed;
   top: 0;
@@ -314,6 +320,7 @@ a {
   right: 0;
   overflow: hidden;
 }
+
 .cloak__container {
   height: 250vmax;
   width: 250vmax;
@@ -322,35 +329,43 @@ a {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .info {
   text-align: center;
   line-height: 1.5;
   max-width: clamp(16rem, 90vmin, 25rem);
 }
-.info > p {
+
+.info>p {
   margin-bottom: 3rem;
 }
+
 @-webkit-keyframes swing {
   0% {
     --swing-x: -100;
     --swing-y: -100;
   }
+
   50% {
     --swing-y: 0;
   }
+
   100% {
     --swing-y: -100;
     --swing-x: 100;
   }
 }
+
 @keyframes swing {
   0% {
     --swing-x: -100;
     --swing-y: -100;
   }
+
   50% {
     --swing-y: 0;
   }
+
   100% {
     --swing-y: -100;
     --swing-x: 100;
