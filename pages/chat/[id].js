@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useLocation, useHistory, Link } from "react-router-dom";
 import axios from "axios";
-import Style from "./chat.module.scss"
+import Style from "./chat.module.scss";
 import io from "socket.io-client";
 
 import { useRouter } from "next/router";
@@ -54,7 +54,7 @@ export default function ParticularRoom(props) {
       //console.log(socketInstance);
       socketInstance.current.emit("join-room", roomId);
     }
-  }, []);
+  }, [props]);
   // fetch history of messages and room details
   useEffect(() => {
     //fetch details of all the messages of the room
@@ -98,10 +98,15 @@ export default function ParticularRoom(props) {
             msgBox.className = Style.receiverMsg;
             const messDiv = document.createElement("div");
             messDiv.textContent = data.message;
-            messDiv.className = Style.mess
+            messDiv.className = Style.mess;
             newDiv.appendChild(msgBox);
             msgBox.appendChild(messDiv);
             outer.appendChild(newDiv);
+          }
+          const shouldScroll =
+            outer.scrollTop + outer.clientHeight === outer.scrollHeight;
+          if (!shouldScroll) {
+            outer.scrollTop = outer.scrollHeight;
           }
         }
       });
@@ -110,8 +115,8 @@ export default function ParticularRoom(props) {
   const [senderName, setSenderName] = useState();
 
   useEffect(() => {
-    setSenderName(window.localStorage.getItem("name"))
-  }, [])
+    setSenderName(window.localStorage.getItem("name"));
+  }, []);
 
   //send messsage
   const sendMess = (e) => {
@@ -154,6 +159,11 @@ export default function ParticularRoom(props) {
           senderBox.appendChild(msgSpacer);
           outer.appendChild(newDiv);
         }
+        const shouldScroll =
+          outer.scrollTop + outer.clientHeight === outer.scrollHeight;
+        if (!shouldScroll) {
+          outer.scrollTop = outer.scrollHeight;
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -191,6 +201,11 @@ export default function ParticularRoom(props) {
   return (
     <div className={Style.room1Outer}>
       <div className={Style.chatHeader}>
+        <div className={Style.userAvatar}>
+          <div className={Style.avtar}>
+            {recieverName && recieverName.charAt(0).toUpperCase()}
+          </div>
+        </div>
         <span className={Style.recieverName}>{recieverName}</span>
         {/* <div className={Style.buttonsChat}>
           <button
@@ -204,7 +219,7 @@ export default function ParticularRoom(props) {
       <div id={roomId} ref={msgAreaRef} className={Style.room1Mess}>
         {storedMessages &&
           storedMessages.map((x) => {
-            return (x.senderName === senderName ?
+            return x.senderName === senderName ? (
               <div className={Style.newMsg}>
                 <div className={Style.senderMsg}>
                   <div className={Style.msgBubble}>
@@ -213,14 +228,15 @@ export default function ParticularRoom(props) {
                   <div className={Style.msgAction}></div>
                   <div className={Style.msgSpacer}></div>
                 </div>
-              </div> :
+              </div>
+            ) : (
               <div className={Style.newMsg}>
                 <div className={Style.receiverMsg}>
                   <div className={Style.mess}>{x.message}</div>
-                </div></div>)
-
-          })
-        }
+                </div>
+              </div>
+            );
+          })}
       </div>
       <form className={Style.room1Form}>
         <input
@@ -237,7 +253,8 @@ export default function ParticularRoom(props) {
           value="send"
           onClick={(e) => {
             sendMess(e);
-          }} />
+          }}
+        />
       </form>
     </div>
   );

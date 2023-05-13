@@ -1,4 +1,4 @@
-import { Server } from "Socket.IO";
+import { Server } from "socket.io";
 import clientPromise from "../../lib/mongo/index";
 
 export default async (req, res) => {
