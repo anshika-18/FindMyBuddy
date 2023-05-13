@@ -51,7 +51,7 @@ export default function ParticularRoom(props) {
     create();
     if (!socketInstance.current) {
       socketInstance.current = io();
-      //console.log(socketInstance);
+      console.log(socketInstance);
       socketInstance.current.emit("join-room", roomId);
     }
   }, [props]);
