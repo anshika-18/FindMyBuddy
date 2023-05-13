@@ -12,10 +12,14 @@ const Header = () => {
     const handleRegisterCLick = () => {
         window.location.replace("/auth/register");
     }
+
+    const handleLogoClick = () => {
+        window.location.replace("/dashboard");
+    }
     return (
         <Navbar expand="lg" fixed="top" className={Style.navbarCustom}>
             <Container>
-                <Navbar.Brand href="#home" className={Style.navbarBrand}>Find My Buddy</Navbar.Brand>
+                <Navbar.Brand href="#home" className={Style.navbarBrand} onClick={handleLogoClick}>Find My Buddy</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className={Style.nav + " " + "justify-content-end"}>

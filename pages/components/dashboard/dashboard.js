@@ -104,6 +104,15 @@ export default function Dashboard() {
     setRecieverName(buddyName);
   };
 
+  const [senderName, setSenderName] = useState();
+
+  useEffect(() => {
+    setSenderName(window.localStorage.getItem("name"));
+  }, []);
+
+  const handleProfileCLick = () => {
+    window.location.replace("/profile");
+  }
 
   return (
     <div className={Style.dashboard}>
@@ -113,7 +122,7 @@ export default function Dashboard() {
         <div className={Style.containerDas}>
           <div className="row">
             <div className={Style.das1 + " " + "col-2"}>
-              <div>FIND MY BUDDY</div>
+              <div className={Style.brand}>FIND MY BUDDY</div>
               <button
                 type="button"
                 onClick={() => {
@@ -132,7 +141,7 @@ export default function Dashboard() {
               </button>
               <button
                 type="button"
-                className={Style.btnSide + " " + "btn"}>
+                className={Style.btnSide + " " + "btn"} onClick={handleProfileCLick}>
                 Profile
               </button>
               <button
@@ -146,7 +155,8 @@ export default function Dashboard() {
             </div>
             {currentWindow == "favourites" ? (
               <div className={Style.das2 + " " + "col-5 "}>
-                <div className={Style.dasHead}>MY FAVOURITES</div>
+                <h3>Hey, {senderName}</h3><br />
+                <div className={Style.dasHead}>Select your Favourite songs</div>
 
                 <div className={Style.addSong + " " + "row"}>
                   <DropdownList
@@ -210,7 +220,8 @@ export default function Dashboard() {
               </div>
             ) : (
               <div className={Style.das2 + " " + "col-5 "}>
-                <div className={Style.dasHead}>FIND BUDDY</div>
+                <h3>Hey, {senderName}</h3><br />
+                <div className={Style.dasHead}>Choose a friend to chat with</div>
                 <ToastContainer></ToastContainer>
                 <div className={Style.containerFav + " " + "container"}>
                   <div className={Style.favRowHead + " " + "row"}>
@@ -256,9 +267,11 @@ export default function Dashboard() {
             <div className={Style.das3 + " " + "col-5"}>
 
               {recieverId == "" ? (
-                <><div className={Style.emptyChats}>
-                  {/* <img src="/images/icons/chat_icon.png" /> */}
-                  Select your buddy to chat</div></>
+                <>
+                  <div className={Style.emptyChats}>
+                    {/* <img src="/images/icons/chat_icon.png" /> */}
+                    Select your buddy to chat</div>
+                </>
               ) : (
                 <div className="chat">
                   <ParticularRoom recieverId={recieverId} recieverName={recieverName}></ParticularRoom>

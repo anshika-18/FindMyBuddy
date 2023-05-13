@@ -29,13 +29,39 @@
 
 .btnSide {
   background: $light-purple;
-  color: #000;
+  color: white;
   width: 100%;
   margin-top: 20px;
 }
 
+.btnSide:hover,
+.btnSide:focus {
+  background: $hover-purple;
+}
+
 .das1 {
   position: relative;
+
+  .brand {
+    color: $light-pink !important;
+    font-weight: 500;
+    font-size: 25px !important;
+    text-align: center;
+    /* Set the brand color to a light shade */
+    --c: linear-gradient(#DD7596 0 0);
+    padding-bottom: .15em;
+    background: var(--c), var(--c);
+    background-size: .3em .1em;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    transition: .3s linear, background-size .3s .2s linear;
+  }
+
+  .brand:hover,
+  .brand:focus {
+    background-size: 40% .1em;
+    background-position: 10% 100%, 90% 100%;
+  }
 }
 
 .btnBottom {
@@ -88,18 +114,21 @@
 
 .addSong {
   margin-bottom: 20px;
-}
 
-.addSong .dashboardDropDown {
-  width: 80%;
-}
+  .dashboardDropDown {
+    position: relative;
+    width: 80%;
+    z-index: 9;
+  }
 
-.addSong button {
-  width: 20%;
+  button {
+    width: 20%;
+  }
+
 }
 
 .dasHead {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .trash {

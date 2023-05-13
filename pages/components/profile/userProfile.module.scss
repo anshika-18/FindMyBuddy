@@ -92,3 +92,8 @@
     color: white;
     margin-bottom: 10px;
 }
+
+.updateBtn:hover,
+.updateBtn:focus {
+    background-color: $hover-purple;
+}
