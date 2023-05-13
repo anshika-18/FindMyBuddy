@@ -30,7 +30,7 @@ export default function ParticularRoom(props) {
     console.log("data of receiver id and sender id ", data);
     //create chat room
     axios
-      .post("http://localhost:3000/api/chat/createRoom", data)
+      .post("/api/chat/createRoom", data)
       .then((res) => {
         console.log("create room", res.data);
         //console.log()
@@ -60,17 +60,15 @@ export default function ParticularRoom(props) {
     //fetch details of all the messages of the room
     if (roomId != "") {
       console.log("room id all mess", roomId);
-      axios
-        .post("http://localhost:3000/api/chat/allMessage/", { roomId })
-        .then((data) => {
-          console.log(data.data.messages);
-          if (data.data) {
-            setStoredMessages(data.data.messages);
-          }
-        });
+      axios.post("/api/chat/allMessage/", { roomId }).then((data) => {
+        console.log(data.data.messages);
+        if (data.data) {
+          setStoredMessages(data.data.messages);
+        }
+      });
       //fetch details of all the participants of the room
       axios
-        .post(`http://localhost:3000/api/chat/roomDetails`, { roomId })
+        .post(`/api/chat/roomDetails`, { roomId })
         .then((data) => {
           setParticipants(data.data.participants);
           //console.log(data.data.participants);
@@ -134,7 +132,7 @@ export default function ParticularRoom(props) {
     //console.log("after");
     //post req
     axios
-      .post("http://localhost:3000/api/chat/newMessage", data)
+      .post("/api/chat/newMessage", data)
       .then((user) => {
         //console.log("mess", message);
         const outer = document.getElementById(roomId);
@@ -181,7 +179,7 @@ export default function ParticularRoom(props) {
     };
     console.log(data);
     axios
-      .put("http://localhost:3000/rooms/leave", data)
+      .put("/rooms/leave", data)
       .then((success) => {
         console.log("success");
         alert("room Left sucessfully. Reload the page..!");
