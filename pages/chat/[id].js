@@ -15,6 +15,7 @@ export default function ParticularRoom(props) {
   const [senderId, setSenderId] = useState("");
   //  const recieverId = props.recieverId;
   const recieverId = props.recieverId;
+  const recieverName = props.recieverName;
   const [roomId, setRoomId] = useState("");
   console.log(props);
 
@@ -26,7 +27,7 @@ export default function ParticularRoom(props) {
       senderId: window.localStorage.getItem("userId"),
       recieverId,
     };
-    // console.log(data);
+    console.log("data of receiver id and sender id ", data);
     //create chat room
     axios
       .post("http://localhost:3000/api/chat/createRoom", data)
@@ -190,7 +191,7 @@ export default function ParticularRoom(props) {
   return (
     <div className={Style.room1Outer}>
       <div className={Style.chatHeader}>
-        <span className={Style.recieverName}>Username</span>
+        <span className={Style.recieverName}>{recieverName}</span>
         {/* <div className={Style.buttonsChat}>
           <button
             variant="danger"

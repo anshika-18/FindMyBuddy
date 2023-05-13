@@ -1,6 +1,7 @@
 @import "../../../styles/variables.module.scss";
 
 .dashboard {
+  overflow: hidden;
   background: $background;
   color: #fff;
   margin: 0;
@@ -64,7 +65,25 @@
 }
 
 .myFavDiv {
+  height: 80vh;
   overflow-y: scroll;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+.myFavDiv::-webkit-scrollbar {
+  width: 10px;
+  /* width of the entire scrollbar */
+}
+
+.myFavDiv::-webkit-scrollbar-track {
+  background: rgb(71, 71, 71);
+}
+
+.myFavDiv::-webkit-scrollbar-thumb {
+  background-color: $background;
+  border-radius: 20px;
+  border: 1px solid rgb(71, 71, 71);
 }
 
 .addSong {
@@ -124,8 +143,17 @@
 .containerFav {
   justify-content: center;
   width: 100%;
+  // overflow: hidden;
 }
 
 .loader {
   text-align: center;
+}
+
+.emptyChats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 22px;
 }

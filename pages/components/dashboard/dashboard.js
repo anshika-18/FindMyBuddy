@@ -18,6 +18,7 @@ export default function Dashboard() {
   // var = "select";
   const [auth, setAuth] = useState(false);
   const [recieverId, setRecieverId] = useState("");
+  const [recieverName, setRecieverName] = useState("");
 
   useEffect(() => {
     if (!window.localStorage.getItem("userId")) {
@@ -97,12 +98,13 @@ export default function Dashboard() {
     }
   };
 
-  const chat = (data) => {
-    console.log(data);
-    setRecieverId(data);
+  const chat = (buddyId, buddyName) => {
+    console.log(buddyId, buddyName);
+    setRecieverId(buddyId);
+    setRecieverName(buddyName);
   };
 
-  const findBuddy = () => {};
+
   return (
     <div className={Style.dashboard}>
       {auth ? (
@@ -117,7 +119,7 @@ export default function Dashboard() {
                 onClick={() => {
                   setCurrentWindow("favourites");
                 }}
-                className={Style.btnSide + " " + "btn btn-outline-primary"}>
+                className={Style.btnSide + " " + "btn"}>
                 Favourites
               </button>
               <button
@@ -125,12 +127,12 @@ export default function Dashboard() {
                 onClick={() => {
                   setCurrentWindow("buddy");
                 }}
-                className={Style.btnSide + " " + "btn btn-primary"}>
+                className={Style.btnSide + " " + "btn"}>
                 Find Buddy
               </button>
               <button
                 type="button"
-                className={Style.btnSide + " " + "btn btn-primary"}>
+                className={Style.btnSide + " " + "btn"}>
                 Profile
               </button>
               <button
@@ -209,15 +211,6 @@ export default function Dashboard() {
             ) : (
               <div className={Style.das2 + " " + "col-5 "}>
                 <div className={Style.dasHead}>FIND BUDDY</div>
-                <div className={Style.addSong + " " + "row"}>
-                  <button
-                    className="btn btn-outline-success "
-                    onClick={() => {
-                      findBuddy();
-                    }}>
-                    Find Buddy
-                  </button>
-                </div>
                 <ToastContainer></ToastContainer>
                 <div className={Style.containerFav + " " + "container"}>
                   <div className={Style.favRowHead + " " + "row"}>
@@ -246,7 +239,7 @@ export default function Dashboard() {
                               <button
                                 className={Style.message + " " + "btn"}
                                 onClick={() => {
-                                  chat(buddy.userId);
+                                  chat(buddy.userId, buddy.name);
                                 }}>
                                 {" "}
                                 <i class="fa-solid fa-message"></i>
@@ -261,12 +254,14 @@ export default function Dashboard() {
               </div>
             )}
             <div className={Style.das3 + " " + "col-5"}>
-              {/* <div>CHATS</div> */}
+
               {recieverId == "" ? (
-                <></>
+                <><div className={Style.emptyChats}>
+                  {/* <img src="/images/icons/chat_icon.png" /> */}
+                  Select your buddy to chat</div></>
               ) : (
                 <div className="chat">
-                  <ParticularRoom recieverId={recieverId}></ParticularRoom>
+                  <ParticularRoom recieverId={recieverId} recieverName={recieverName}></ParticularRoom>
                 </div>
               )}
             </div>
