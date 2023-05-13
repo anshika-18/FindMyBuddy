@@ -10,21 +10,19 @@ import ParticularRoom from "../../chat/[id]";
 import { RotatingLines } from "react-loader-spinner";
 
 export default function Dashboard() {
-  // const { songs, setSongs } = useState([]);
   const [value, setValue] = useState("select");
   const [favSongs, setFavSongs] = useState([]);
   const [currentWindow, setCurrentWindow] = useState("favourites");
   const [buddy, setBuddy] = useState([]);
-  // var = "select";
   const [auth, setAuth] = useState(false);
   const [recieverId, setRecieverId] = useState("");
   const [recieverName, setRecieverName] = useState("");
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!window.localStorage.getItem("userId")) {
       window.location.replace("/auth/login");
     }
-    // setUserId(window.localStorage.getItem("userId"));
   }, []);
 
   useEffect(async () => {
@@ -33,10 +31,11 @@ export default function Dashboard() {
         userId: window.localStorage.getItem("userId"),
       };
       const res1 = await axios.post("/api/getUserSongs", data);
-      //console.log(res1.data);
+      console.log(res1.data);
       const res2 = await axios.post("/api/getSongsById", {
         songIds: res1.data,
       });
+      console.log(res2.data);
       const res3 = await axios.post("/api/getUsersFavSongs", {
         currentUserId: window.localStorage.getItem("userId"),
       });
@@ -44,6 +43,7 @@ export default function Dashboard() {
       setBuddy(res3.data.data);
       console.log(res2.data);
       setFavSongs(res2.data);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -112,7 +112,7 @@ export default function Dashboard() {
 
   const handleProfileCLick = () => {
     window.location.replace("/profile");
-  }
+  };
 
   return (
     <div className={Style.dashboard}>
@@ -141,7 +141,8 @@ export default function Dashboard() {
               </button>
               <button
                 type="button"
-                className={Style.btnSide + " " + "btn"} onClick={handleProfileCLick}>
+                className={Style.btnSide + " " + "btn"}
+                onClick={handleProfileCLick}>
                 Profile
               </button>
               <button
@@ -155,14 +156,14 @@ export default function Dashboard() {
             </div>
             {currentWindow == "favourites" ? (
               <div className={Style.das2 + " " + "col-5 "}>
-                <h3>Hey, {senderName}</h3><br />
+                <h3>Hey, {senderName}</h3>
+                <br />
                 <div className={Style.dasHead}>Select your Favourite songs</div>
 
                 <div className={Style.addSong + " " + "row"}>
                   <DropdownList
                     dataKey="index"
                     value={value}
-                    //sdefaultValue="Yellow"
                     data={songs}
                     textField="title"
                     filter="contains"
@@ -185,7 +186,7 @@ export default function Dashboard() {
                     <div className="col-1"></div>
                   </div>
                   <div className={Style.myFavDiv}>
-                    {favSongs.length == 0 ? (
+                    {isLoading ? (
                       <div className={Style.loader}>
                         <RotatingLines
                           strokeColor="grey"
@@ -220,8 +221,11 @@ export default function Dashboard() {
               </div>
             ) : (
               <div className={Style.das2 + " " + "col-5 "}>
-                <h3>Hey, {senderName}</h3><br />
-                <div className={Style.dasHead}>Choose a friend to chat with</div>
+                <h3>Hey, {senderName}</h3>
+                <br />
+                <div className={Style.dasHead}>
+                  Choose a friend to chat with
+                </div>
                 <ToastContainer></ToastContainer>
                 <div className={Style.containerFav + " " + "container"}>
                   <div className={Style.favRowHead + " " + "row"}>
@@ -265,16 +269,18 @@ export default function Dashboard() {
               </div>
             )}
             <div className={Style.das3 + " " + "col-5"}>
-
               {recieverId == "" ? (
                 <>
                   <div className={Style.emptyChats}>
                     {/* <img src="/images/icons/chat_icon.png" /> */}
-                    Select your buddy to chat</div>
+                    Select your buddy to chat
+                  </div>
                 </>
               ) : (
                 <div className="chat">
-                  <ParticularRoom recieverId={recieverId} recieverName={recieverName}></ParticularRoom>
+                  <ParticularRoom
+                    recieverId={recieverId}
+                    recieverName={recieverName}></ParticularRoom>
                 </div>
               )}
             </div>

@@ -12,8 +12,6 @@ export default async (req, res) => {
     const client = await clientPromise;
     const db = client.db("users");
     const users = await db.collection("users").find({ _id: userId }).toArray();
-    //console.log(userId);
-    //console.log(users);
     if (users.length == 0) return res.json({ error: "User not found" });
     else {
       console.log(users[0]);

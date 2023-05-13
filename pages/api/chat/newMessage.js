@@ -1,10 +1,8 @@
 import { ObjectId } from "mongodb";
-import { abort } from "process";
 import clientPromise from "../../../lib/mongo/index";
 
 export default async (req, res) => {
   try {
-    //console.log(req.body);
     console.log("roomId", req.body.roomId);
     if (!req.body.senderId || !req.body.roomId || !req.body.message) {
       return res.status(300).json({ error: "Something went wrong" });

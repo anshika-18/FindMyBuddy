@@ -5,7 +5,6 @@ export default async (req, res) => {
     const client = await clientPromise;
     const db = client.db("users");
     const data = await db.collection("messages").find({ roomId }).toArray();
-    //console.log(data);
     if (data.length != 0) {
       return res.json(data[0]);
     } else {

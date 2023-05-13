@@ -69,8 +69,8 @@ button {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.login-container .signin .inputBox input:valid~span,
-.login-container .signin .inputBox input:focus~span {
+.login-container .signin .inputBox input:valid ~ span,
+.login-container .signin .inputBox input:focus ~ span {
   color: #00dfc4;
   border: 1px solid #00dfc4;
   background: #223243;
@@ -285,8 +285,8 @@ Link:hover {
   letter-spacing: 1rem;
   transform: translate3d(0, 0, 0vmin);
   --x: calc(50% + (var(--swing-x) * 0.5) * 1%);
-  background: radial-gradient(var(--lit-header), var(--header) 45%) var(--x) 100%/200% 200%;
-  -webkit-background-clip: text;
+  background: radial-gradient(var(--lit-header), var(--header) 45%) var(--x)
+    100%/200% 200%;
   color: transparent;
 }
 
@@ -299,8 +299,11 @@ Link:hover {
   left: 0;
   color: var(--shadow);
   filter: blur(1.5vmin);
-  transform: scale(1.05) translate3d(0, 12%, -10vmin) translate(calc((var(--swing-x, 0) * 0.05) * 1%),
-      calc((var(--swing-y) * 0.05) * 1%));
+  transform: scale(1.05) translate3d(0, 12%, -10vmin)
+    translate(
+      calc((var(--swing-x, 0) * 0.05) * 1%),
+      calc((var(--swing-y) * 0.05) * 1%)
+    );
 }
 
 .cloak {
@@ -336,7 +339,7 @@ Link:hover {
   max-width: clamp(16rem, 90vmin, 25rem);
 }
 
-.info>p {
+.info > p {
   margin-bottom: 3rem;
 }
 

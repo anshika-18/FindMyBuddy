@@ -45,7 +45,7 @@ export default function ParticularRoom(props) {
     await fetch("/api/socket");
   };
   useEffect(() => {
-    // setSenderId(localStorage.getItem("userId"));
+    setSenderId(localStorage.getItem("userId"));
 
     initialise();
     create();

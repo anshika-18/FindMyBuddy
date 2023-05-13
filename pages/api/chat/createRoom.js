@@ -21,9 +21,7 @@ export default async (req, res) => {
         participants: [recieverId, senderId],
       })
       .toArray();
-    console.log("check", check);
     if (check.length != 0 || check1.length != 0) {
-      //console.log("klgdfou", check[0]);
       if (check1.length != 0) {
         return res.json({ roomId: check1[0].roomId });
       }

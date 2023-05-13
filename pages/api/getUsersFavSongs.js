@@ -15,14 +15,12 @@ export default async (req, res) => {
     if (users.length === 0) {
       return res.status(404).json({ error: "User not found" });
     }
-    console.log("1");
     // Map over the users array and create a new array with their favorite songs
     const user_favourites = await users
       .filter((user) => user.favSongId.length > 0)
       .map((user) => {
         const favSongName = user.favSongId.map((songId) => {
           const song = songs.find((s) => s.index === songId);
-          //console.log(song);
           return song ? song.title : "";
         });
 
@@ -31,14 +29,14 @@ export default async (req, res) => {
           favourites: favSongName,
         };
       });
-    console.log("2");
-    //console.log(user_favourites);
 
-    const findBuddy = await axios.post("https://model-for-finding-buddy-rashigupta01.vercel.app/findBuddy", {
-      currentUserId,
-      user_favourites,
-    });
-    console.log("3");
+    const findBuddy = await axios.post(
+      "https://model-for-finding-buddy-rashigupta01.vercel.app/findBuddy",
+      {
+        currentUserId,
+        user_favourites,
+      }
+    );
 
     const data = [];
     for (var user = 0; user < findBuddy.data.length; user++) {
@@ -53,17 +51,8 @@ export default async (req, res) => {
         name: curr[0].name,
       });
     }
-
-    console.log(data);
     return res.json({ data: data });
   } catch (err) {
-    //console.log(err);
     return res.json(err);
   }
-
-  //     return res.json({ currentUserId: currentUserId, user_favourites });
-  // } catch (err) {
-  //     console.log(err);
-  //     return res.json(err);
-  // }
 };
