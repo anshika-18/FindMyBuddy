@@ -203,7 +203,7 @@ export default function ParticularRoom(props) {
       <div className={Style.chatHeader}>
         <div className={Style.userAvatar}>
           <div className={Style.avtar}>
-            {recieverName.charAt(0).toUpperCase()}
+            {recieverName && recieverName.charAt(0).toUpperCase()}
           </div>
         </div>
         <span className={Style.recieverName}>{recieverName}</span>
