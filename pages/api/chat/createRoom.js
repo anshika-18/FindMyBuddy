@@ -15,9 +15,18 @@ export default async (req, res) => {
         participants: [senderId, recieverId],
       })
       .toArray();
+    const check1 = await db
+      .collection("rooms")
+      .find({
+        participants: [recieverId, senderId],
+      })
+      .toArray();
     console.log("check", check);
-    if (check.length != 0) {
-      console.log("klgdfou", check[0]);
+    if (check.length != 0 || check1.length != 0) {
+      //console.log("klgdfou", check[0]);
+      if (check1.length != 0) {
+        return res.json({ roomId: check1[0].roomId });
+      }
       return res.json({ roomId: check[0].roomId });
     } else {
       const roomId = uuid();
