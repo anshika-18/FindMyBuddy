@@ -66,9 +66,9 @@
 
 .myFavDiv {
   height: 80vh;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+  //overflow-y: scroll;
+  //scroll-behavior: smooth;
+  // overflow-x: hidden;
 }
 
 .addSong {
@@ -77,6 +77,8 @@
 
 .addSong .dashboardDropDown {
   width: 80%;
+  position: relative;
+  z-index: 1000;
 }
 
 .addSong button {
