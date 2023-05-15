@@ -69,8 +69,8 @@ button {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.login-container .signin .inputBox input:valid ~ span,
-.login-container .signin .inputBox input:focus ~ span {
+.login-container .signin .inputBox input:valid~span,
+.login-container .signin .inputBox input:focus~span {
   color: #00dfc4;
   border: 1px solid #00dfc4;
   background: #223243;
@@ -236,6 +236,7 @@ Link:hover {
   align-items: center;
   text-align: center;
 }
+
 .addBtn:hover,
 .addBtn:focus,
 .addBtn:active,
@@ -252,22 +253,24 @@ Link:hover {
 
 .section .error {
   font-size: 150px;
-  color: #008b62;
-  text-shadow: 1px 1px 1px #00593e, 2px 2px 1px #00593e, 3px 3px 1px #00593e,
-    4px 4px 1px #00593e, 5px 5px 1px #00593e, 6px 6px 1px #00593e,
-    7px 7px 1px #00593e, 8px 8px 1px #00593e, 25px 25px 8px rgba(0, 0, 0, 0.2);
+  color: #DD7596;
+  text-shadow: 1px 1px 1px #eca5bb, 2px 2px 1px #eca5bb, 3px 3px 1px #eca5bb,
+    4px 4px 1px #eca5bb, 5px 5px 1px #eca5bb, 6px 6px 1px #eca5bb,
+    7px 7px 1px #eca5bb, 8px 8px 1px #eca5bb, 25px 25px 8px rgba(0, 0, 0, 0.2);
 }
 
 .page {
   margin: 2rem 0;
   font-size: 20px;
   font-weight: 600;
-  color: #444;
+  color: #fff;
 }
 
 .back-home {
   display: inline-block;
-  border: 2px solid #222;
+  background-color: #7776BC;
+  border-radius: 10px;
+  border: 2px solid #7776BC;
   color: #fff;
   text-transform: uppercase;
   font-weight: 600;
@@ -276,7 +279,8 @@ Link:hover {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
   text-decoration: none;
 }
+
 .back-home:hover {
-  background: #222;
+  background: #5d5ba4;
   color: #ddd;
 }
