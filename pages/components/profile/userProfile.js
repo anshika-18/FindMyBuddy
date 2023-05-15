@@ -4,6 +4,13 @@ import { useEffect, useState } from "react";
 export default function UserProfile() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    if (!window.localStorage.getItem("userId")) {
+      window.location.replace("/auth/login");
+    }
+  }, []);
+
   useEffect(async () => {
     setName(window.localStorage.getItem("name"));
     setEmail(window.localStorage.getItem("email"));
@@ -53,7 +60,7 @@ export default function UserProfile() {
                 <input
                   type="email"
                   className={Style.formControl + " " + "form-control"}
-                  id="eMail"
+                  id="email"
                   placeholder={email}></input>
               </div>
             </div>
