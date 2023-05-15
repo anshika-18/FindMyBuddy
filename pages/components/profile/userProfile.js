@@ -35,11 +35,63 @@ export default function UserProfile() {
               }>
               <div className="form-group">
                 <label for="fullName">Full Name</label>
+                <div className={Style.formControl + " " + "form-control"}>
+                  {name}
+                </div>
+              </div>
+            </div>
+            <div
+              className={
+                Style.formBox +
+                " " +
+                "col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12"
+              }>
+              <div className="form-group">
+                <label for="eMail">Email</label>
+                <div className={Style.formControl + " " + "form-control"}>
+                  {email}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="text-right">
+            <button
+              type="button"
+              id="submit"
+              name="submit"
+              className="btn btn-secondary">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className={
+          Style.mainCard +
+          " " +
+          "col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 update"
+        }>
+        <div className={Style.cardBody + " " + "card h-100"}>
+          <div className="card-body">
+            <div className={Style.userProfile}>
+              <h5 className={Style.userName}>Update profile</h5>
+            </div>
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <h6 className={Style.heading + " " + "mb-2"}>Personal Details</h6>
+            </div>
+            <div
+              className={
+                Style.formBox +
+                " " +
+                "col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12"
+              }>
+              <div className="form-group">
+                <label for="fullName">Full Name</label>
                 <input
                   type="text"
                   className={Style.formControl + " " + "form-control"}
                   id="fullName"
-                  placeholder={name}></input>
+                  placeholder="Enter name"></input>
               </div>
             </div>
             <div
@@ -54,7 +106,7 @@ export default function UserProfile() {
                   type="email"
                   className={Style.formControl + " " + "form-control"}
                   id="eMail"
-                  placeholder={email}></input>
+                  placeholder="Enter email"></input>
               </div>
             </div>
           </div>
@@ -65,13 +117,6 @@ export default function UserProfile() {
               name="submit"
               className={Style.updateBtn + " " + "btn"}>
               Update
-            </button>
-            <button
-              type="button"
-              id="submit"
-              name="submit"
-              className="btn btn-secondary">
-              Cancel
             </button>
           </div>
         </div>
